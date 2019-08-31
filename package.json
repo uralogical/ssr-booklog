@@ -1,0 +1,18 @@
+{
+  "name": "ssr-booklog",
+  "version": "1.0.0",
+  "description": "My mind-blowing Nuxt.js project",
+  "author": "Masatoshi-A",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "nuxt": "^2.0.0",
+    "element-ui": "^2.4.11"
+  },
+  "devDependencies": {}
+}
