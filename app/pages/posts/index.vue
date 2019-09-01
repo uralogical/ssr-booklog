@@ -1,32 +1,32 @@
 <template>
   <section class='container post-page'>
-    <el-card>
+    <el-card style='flex: 1'>
       <div slot='header' class='clearfix'>
         <span>新着投稿</span>
-        <el-table
-          :data='showPosts'
-          style='width: 100%'
-          class='table'
-        >
-          <el-table-column
-            prop='title'
-            lable='タイトル'
-          >
-          </el-table-column>
-          <el-table-column
-            prop='user.id'
-            lable='投稿者'
-            width='180'
-          >
-          </el-table-column>
-          <el-table-column
-            prop='created_at'
-            lable='投稿日時'
-            width='240'
-          >
-          </el-table-column>
-        </el-table>
       </div>
+      <el-table
+        :data='showPosts'
+        style='width: 100%'
+        class='table'
+      >
+        <el-table-column
+          prop='title'
+          label='タイトル'
+        >
+        </el-table-column>
+        <el-table-column
+          prop='user.id'
+          label='投稿者'
+          width='180'
+        >
+        </el-table-column>
+        <el-table-column
+          prop='created_at'
+          label='投稿日時'
+          width='240'
+        >
+        </el-table-column>
+      </el-table>
     </el-card>
   </section>
 </template>
