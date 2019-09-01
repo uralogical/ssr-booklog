@@ -33,12 +33,20 @@ export default {
     }
   },
   computed: {
-    ...mapGetters['user']
+    ...mapGetters(['user'])
   },
   methods: {
-    publish() {
-
-    }
+    async publish() {
+      console.log(this.user)
+      const payload = {
+        user: this.user,
+        ...this.formData,
+      }
+      await this.publishPost({ payload })
+      this.$router.push('/posts')
+    },
+    ...mapActions('users', ['updateUser']),
+    ...mapActions('posts', ['publishPost'])
   }
 }
 </script>
