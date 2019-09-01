@@ -42,6 +42,7 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/axios'
   ],
   axios: {
     baseURL: 'https://ssr-booklog.firebaseio.com'
