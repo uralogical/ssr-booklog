@@ -15,14 +15,27 @@ export const mutations = {
   updatePost(state, { post }) {
     state.posts = state.posts.map((p) => (p.id === post.id ? post : p))
   },
-  clearPost(state) {
+  clearPosts(state) {
     state.posts = []
   }
 }
 
 export const actions = {
+  async fetchPosts({ commit }) {
+    const posts = await this.$axios.$get(`/posts.json`)
+    commit('clearPosts')
+    Object.entries(posts)
+      .reverse()
+      .forEach(([id, content]) =>
+        commit('addPost', {
+          post: {
+            id,
+            ...content
+          }
+        })
+      )
+  },
   async publishPost({ commit }, { payload }) {
-    console.log(payload)
     const user = await this.$axios.$get(`/users/${payload.user.id}.json`)
     const post_id = (await this.$axios.$post('/posts.json', payload)).name
     const created_at = moment().format()

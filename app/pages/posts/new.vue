@@ -37,7 +37,6 @@ export default {
   },
   methods: {
     async publish() {
-      console.log(this.user)
       const payload = {
         user: this.user,
         ...this.formData,
