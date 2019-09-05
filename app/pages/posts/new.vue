@@ -11,28 +11,38 @@
         </div>
       </div>
       <div v-if="response.length !== 0">
-        <el-carousel v-if="response" type="card" :autoplay="false" ref="carousel">
-          <el-carousel-item v-for="(item, key) in response.items" :key="key">
-            <div
-              v-if="item.volumeInfo.imageLinks"
-              style="width: 100%; height: 100%; text-align: center"
-            >
-              <img
-                :src="item.volumeInfo.imageLinks.thumbnail"
-                class="medium"
-                style="height: 100%;"
-              >
+        <el-table
+          :data='response.items'
+          style='width: 100%'
+          height="700"
+          class='table'
+        >
+          <el-table-column
+            label='表紙'
+          >
+            <div slot-scope="{row}" class="img-container">
+              <img :src="row.volumeInfo.imageLinks.smallThumbnail" alt="row.volumeInfo.title">
             </div>
-          </el-carousel-item>
-        </el-carousel>
-        <div slot='header' class='clearfix'>
-          <div class='text-center' style='margin-top: 16px;'>
-            <el-button type='primary' @click='register' round>
-              <span class='el-icon-circle-plus'></span>
-              <span>本を登録</span>
-            </el-button>
-          </div>
-        </div>
+          </el-table-column>
+          <el-table-column
+            prop='volumeInfo.title'
+            label='タイトル'
+          >
+          </el-table-column>
+          <el-table-column
+            prop='volumeInfo.authors'
+            label='著者'
+          >
+          </el-table-column>
+          <el-table-column>
+            <template scope="scope">
+              <el-button type='primary' @click='register(scope.$index)' round>
+                <span class='el-icon-circle-plus'></span>
+                <span>本を登録</span>
+              </el-button>
+            </template>
+          </el-table-column>
+        </el-table>
       </div>
     </el-card>
   </section>
@@ -72,8 +82,8 @@ export default {
       };
       this.response = await this.$axios.$get(baseUrl, { params: params });
     },
-    async register() {
-      const bookInfo = this.response.items[this.$refs.carousel.activeIndex].volumeInfo;
+    async register(index) {
+      const bookInfo = this.response.items[index].volumeInfo;
 
       const payload = {
         user: this.user,
