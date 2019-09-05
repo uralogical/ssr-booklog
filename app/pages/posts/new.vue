@@ -61,29 +61,18 @@ export default {
     }
   },
   methods: {
-    async searchRakutenAPI() {
-      const baseUrl = 'https://app.rakuten.co.jp/services/api/BooksBook/Search/20170404?'
-      const params = {
-        applicationId: '1007521135499136307',
-        keyword: this.formData.searchWord
-      }
-      this.response = await this.$axios.$get(baseUrl, { params: params });
-      console.log(this.response)
-    },
     async search() {
       const baseUrl = 'https://www.googleapis.com/books/v1/volumes'
       const searchWord = this.formData.searchWord
       const params = {
-        q: `inauthor:${searchWord}`, // 検索キーワード。intitle:で書籍名が対象に
-        Country: "JP",           // 国の指定。JPで日本の指定
-        maxResults: 20,          // 取得する検索件数。10~40件を指定可。デフォルトは10件
-        startIndex: 0,        // ページングのページ数を指定。0-index
+        q: searchWord,
+        Country: "JP",
+        maxResults: 20,
+        startIndex: 0,
       };
       this.response = await this.$axios.$get(baseUrl, { params: params });
-      console.log(this.response)
     },
     async register() {
-      console.log(this.response.items[this.$refs.carousel.activeIndex])
       const bookInfo = this.response.items[this.$refs.carousel.activeIndex].volumeInfo;
 
       const payload = {
