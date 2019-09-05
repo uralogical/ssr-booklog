@@ -2,31 +2,21 @@
   <section class='container post-page'>
     <el-card style='flex: 1'>
       <div slot='header' class='clearfix'>
-        <span>新着投稿</span>
+        <span>読んだ本の一覧</span>
       </div>
-      <el-table
-        :data='showPosts'
-        style='width: 100%'
-        class='table'
-      >
-        <el-table-column
-          prop='title'
-          label='タイトル'
-        >
-        </el-table-column>
-        <el-table-column
-          prop='user.id'
-          label='投稿者'
-          width='180'
-        >
-        </el-table-column>
-        <el-table-column
-          prop='created_at'
-          label='投稿日時'
-          width='240'
-        >
-        </el-table-column>
-      </el-table>
+      <el-carousel type="card" :autoplay="false" ref="carousel">
+        <el-carousel-item v-for="(item, key) in showPosts" :key="key">
+          <div
+            style="width: 100%; height: 100%; text-align: center"
+          >
+            <img
+              :src="item.thumbnail"
+              class="medium"
+              style="height: 100%;"
+            >
+          </div>
+        </el-carousel-item>
+      </el-carousel>
     </el-card>
   </section>
 </template>

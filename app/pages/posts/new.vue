@@ -21,7 +21,11 @@
             label='表紙'
           >
             <div slot-scope="{row}" class="img-container">
-              <img :src="row.volumeInfo.imageLinks.smallThumbnail" alt="row.volumeInfo.title">
+              <img
+                v-if="row.volumeInfo.imageLinks"
+                :src="row.volumeInfo.imageLinks.smallThumbnail"
+                alt="row.volumeInfo.title"
+              >
             </div>
           </el-table-column>
           <el-table-column
