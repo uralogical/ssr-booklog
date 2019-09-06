@@ -4,7 +4,7 @@
       SSR BookLog
     </el-menu-item>
     <el-menu-item index='2' :route="{ path: '/posts' }">
-      投稿一覧
+      本の一覧
     </el-menu-item>
 
     <no-ssr>
@@ -26,7 +26,7 @@
         index='5'
         style='float: right;'
         :route="{ path: '/posts/new' }">
-        新規投稿
+        本を登録
       </el-menu-item>
     </no-ssr>
   </el-menu>
